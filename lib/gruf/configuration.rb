@@ -45,10 +45,10 @@ module Gruf
       event_listener_proc: nil,
       synchronized_client_internal_cache_expiry: 60,
       rpc_server_options: {
-        pool_size: GRPC::RpcServer::DEFAULT_POOL_SIZE,
-        max_waiting_requests: GRPC::RpcServer::DEFAULT_MAX_WAITING_REQUESTS,
-        poll_period: GRPC::RpcServer::DEFAULT_POLL_PERIOD,
-        pool_keep_alive: GRPC::Pool::DEFAULT_KEEP_ALIVE,
+        pool_size: 30, # GRPC::RpcServer::DEFAULT_POOL_SIZE,
+        max_waiting_requests: 20, # GRPC::RpcServer::DEFAULT_MAX_WAITING_REQUESTS,
+        poll_period: 1, # GRPC::RpcServer::DEFAULT_POLL_PERIOD,
+        pool_keep_alive: 0.25, # GRPC::Pool::DEFAULT_KEEP_ALIVE,
         connect_md_proc: nil,
         server_args: {}
       }.freeze
