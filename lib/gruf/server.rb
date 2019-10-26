@@ -86,14 +86,19 @@ module Gruf
     #
     # :nocov:
     def start!
+      puts "GRUF: STARTING SERVER"
+
       update_proc_title(:starting)
+      puts "GRUF: pre-thread spawn"
 
       server_thread = Thread.new do
+        puts "GRUF: STARTING SERVER - START THREAD"
         logger.info { "Starting gruf server at #{@hostname}..." }
         server.run
       end
 
       stop_server_thread = Thread.new do
+        puts "GRUF: STARTING SERVER - STOP THREAD"
         loop do
           break if @stop_server
 
@@ -103,7 +108,9 @@ module Gruf
         server.stop
       end
 
+      puts "GRUF: WAITING TILL RUNNING"
       server.wait_till_running
+      puts "GRUF: DONE WAITING"
       @started = true
       update_proc_title(:serving)
       stop_server_thread.join

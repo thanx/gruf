@@ -51,6 +51,7 @@ module Gruf
           @hook_executor.call(:before_server_start, server: @server)
           @server.start!
         rescue StandardError => e
+          puts caller
           exception = e
           # Catch the exception here so that we always ensure the post hook runs
           # This allows systems wanting to provide external server instrumentation

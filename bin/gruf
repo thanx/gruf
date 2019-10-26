@@ -15,15 +15,26 @@
 # COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
+puts "Gruf: BEFORE RUBYGEMS"
+
 require 'rubygems'
+puts "Gruf: BEFORE bundler/setup"
 require 'bundler/setup'
+puts "Gruf: BEFORE rails"
 begin
   require 'rails'
 rescue LoadError
   nil
 end
+puts "Gruf: BEFORE config/environment"
 load 'config/environment.rb' if defined?(Rails)
+
+puts "Gruf: BEFORE require gruf"
 require 'gruf'
+
+puts "Gruf: BEFORE CLI"
 
 cli = Gruf::Cli::Executor.new
 cli.run
+
+puts "Gruf: AFTER CLI"
